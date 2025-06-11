@@ -2,8 +2,7 @@
   <div>
     <Navbar />
     <router-view />
-    <HeroSection />
-    <MissionSection />
+ 
   </div>
 </template>
 
