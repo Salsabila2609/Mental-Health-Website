@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped>
-/* Hex Codes (Pastikan ini sesuai dengan palet Anda) */
+/* Hex Codes*/
 /* Hijau Muda: #86A788 */
 /* Cream: #FFFEEC */
 /* Pink Muda Banget: #FFE3E2 */
@@ -65,11 +65,11 @@ export default {
   line-height: 1.6;
 }
 
-.home-button { /* Gaya untuk tombol utama, sekarang tanpa .kuis-button */
+.home-button {
   display: inline-block;
   padding: 15px 30px;
-  margin: 0 auto; /* Tengah tombol jika hanya satu */
-  background-color: #86A788; /* Hijau Muda */
+  margin: 0 auto;
+  background-color: #86A788;
   color: white;
   text-decoration: none;
   border-radius: 8px;
@@ -80,13 +80,10 @@ export default {
 }
 
 .home-button:hover {
-  background-color: #3C552D; /* Hijau Tua */
+  background-color: #3C552D;
   transform: translateY(-2px);
 }
 
-/* Gaya .kuis-button dihapus karena elemennya tidak ada */
-
-/* Responsivitas */
 @media (max-width: 768px) {
   .not-found-content {
     padding: 40px 20px;
@@ -97,10 +94,10 @@ export default {
   .not-found-content h2 {
     font-size: 2em;
   }
-  .home-button { /* Tombol menjadi satu per baris di layar kecil */
+  .home-button {
     padding: 12px 25px;
     font-size: 1em;
-    margin: 10px auto; /* Tengah jika hanya satu tombol */
+    margin: 10px auto;
     display: block;
   }
 }
