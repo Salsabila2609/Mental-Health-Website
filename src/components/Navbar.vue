@@ -16,7 +16,7 @@
         <li><router-link to="/artikel" @click="closeMenu">Artikel</router-link></li>
         <li><router-link to="/mood-tracker" @click="closeMenu">Mood Tracker</router-link></li>
         <li><router-link to="/kuis" @click="closeMenu">Tes & Kuis</router-link></li>
-        <li class="profil-link"><router-link to="/profil" @click="closeMenu">Profil</router-link></li>
+        <li class="profil-link"><router-link to="/profil" @click="closeMenu">Butuh Bantuan?</router-link></li>
       </ul>
     </div>
   </nav>
