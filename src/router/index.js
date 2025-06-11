@@ -4,6 +4,7 @@ import HomePage from '../views/HomePage.vue'
 import ChatbotPage from '../views/Chatbot.vue'
 import ArtikelPage from '../views/Artikel.vue'
 import MoodTrackerPage from '../views/MoodTracker.vue'
+import DetailArtikel from '@/views/DetailArtikel.vue'
 
 // Kuis
 import KuisPage from '../views/Kuis.vue'
@@ -48,6 +49,12 @@ const routes = [
     path: '/kuis/:testType/hasil',
     name: 'TestResult',
     component: TestResultPage,
+    props: true
+  },
+    {
+    path: '/detailartikel',
+    name: 'DetailArtikel',
+    component: DetailArtikel,
     props: true
   }
 ]

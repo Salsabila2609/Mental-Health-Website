@@ -1,7 +1,10 @@
 <template>
   <div class="test-result-page">
-    <router-link to="/kuis" class="back-to-overview">&larr; Kembali ke Daftar Tes</router-link>
-    <router-link :to="`/kuis/${testType}`" class="repeat-this-test">&larr; Ulangi Tes Ini</router-link>
+    <div class="top-navigation-links">
+      <router-link to="/kuis" class="nav-link">&larr; Kembali ke Daftar Tes</router-link>
+      <span class="separator">|</span>
+      <router-link :to="`/kuis/${testType}`" class="nav-link">Ulangi Tes Ini</router-link>
+    </div>
 
     <div class="result-container">
       <h1>Hasil Tes {{ testDisplayName }} Anda</h1>
@@ -51,28 +54,23 @@ export default {
     };
   },
   created() {
-    // console.log("TestResultPage Created. Query params:", this.$route.query); // Debugging
     this.parseAndCalculateResult();
   },
   methods: {
     parseAndCalculateResult() {
-      const answersString = this.$route.query.answers;
-      // console.log("Answers string from query:", answersString); // Debugging
+      const answersString = sessionStorage.getItem('testAnswers');
+      sessionStorage.removeItem('testAnswers');
 
       try {
         this.parsedAnswers = answersString ? JSON.parse(answersString) : [];
-        // console.log("Parsed answers:", this.parsedAnswers); // Debugging
       } catch (e) {
-        console.error("Gagal parse jawaban dari query params:", e);
+        console.error("Gagal parse jawaban dari sessionStorage:", e);
         this.parsedAnswers = [];
       }
 
       this.score = this.parsedAnswers.reduce((sum, value) => {
-        // console.log(`Sum: ${sum}, Value: ${value}, Type: ${typeof value}`); // Debugging
         return sum + Number(value);
       }, 0);
-
-      // console.log("Skor akhir:", this.score); // Debugging
 
       const typeMap = {
         'depresi': 'Depresi',
@@ -83,7 +81,6 @@ export default {
       };
       this.testDisplayName = typeMap[this.testType] || 'Kesehatan Mental';
 
-      // Logika Interpretasi Hasil dan Rekomendasi
       if (this.testType === 'depresi') {
         if (this.score <= 4) {
           this.interpretation = 'Tingkat depresi Anda rendah. Pertahankan pola hidup sehat dan aktivitas sosial yang positif.';
@@ -129,7 +126,7 @@ export default {
           this.recommendation = 'Penting untuk istirahat total dari sumber stres dan mencari dukungan profesional untuk memulihkan diri serta mengembangkan strategi pencegahan burnout jangka panjang.';
         }
       } else if (this.testType === 'harga-diri') {
-        if (this.score >= 9) { // Skor tinggi = harga diri tinggi
+        if (this.score >= 9) {
           this.interpretation = 'Tingkat harga diri Anda tinggi. Anda memiliki pandangan positif tentang diri sendiri dan merasa berharga.';
           this.recommendation = 'Terus kembangkan kekuatan Anda, praktikkan kasih sayang pada diri sendiri, dan kelilingi diri dengan orang-orang yang mendukung.';
         } else if (this.score >= 5) {
@@ -171,22 +168,37 @@ export default {
   text-align: center;
 }
 
-.back-to-overview, .repeat-this-test {
-  display: inline-block;
+.top-navigation-links {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   margin-bottom: 30px;
-  margin-right: 15px;
-  color: #C97372; /* Pink */
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 10px;
+}
+
+.nav-link {
+  color: #C97372;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.1em;
   transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
-.back-to-overview:hover, .repeat-this-test:hover {
-  color: #3C552D; /* Hijau Tua */
+.nav-link:hover {
+  color: #3C552D;
 }
 
-/* Bagian Kontainer Hasil */
+.separator {
+  color: #888;
+  margin: 0 10px;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
 .result-container {
   background-color: #FFFFFF;
   padding: 40px;
@@ -197,20 +209,20 @@ export default {
 
 .result-container h1 {
   font-size: 2.5em;
-  color: #3C552D; /* Hijau Tua */
+  color: #3C552D;
   margin-bottom: 25px;
 }
 
 .score-display {
   font-size: 1.8em;
   font-weight: bold;
-  color: #C97372; /* Pink */
+  color: #C97372;
   margin-bottom: 20px;
 }
 
 .score-display span {
   font-size: 1.2em;
-  color: #3C552D; /* Hijau Tua */
+  color: #3C552D;
 }
 
 .interpretation {
@@ -231,7 +243,7 @@ export default {
 
 .additional-resources {
   text-align: left;
-  background-color: #FFFEEC; /* Cream */
+  background-color: #FFFEEC;
   padding: 25px;
   border-radius: 8px;
   margin-bottom: 30px;
@@ -239,11 +251,11 @@ export default {
 }
 
 .additional-resources h3 {
-  color: #C97372; /* Pink */
+  color: #C97372;
   margin-top: 0;
   margin-bottom: 15px;
   font-size: 1.4em;
-  border-bottom: 1px solid #FFCFCF; /* Pink Muda */
+  border-bottom: 1px solid #FFCFCF;
   padding-bottom: 10px;
 }
 
@@ -257,20 +269,20 @@ export default {
 }
 
 .additional-resources a {
-  color: #86A788; /* Hijau Muda */
+  color: #86A788;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
 .additional-resources a:hover {
-  color: #3C552D; /* Hijau Tua */
+  color: #3C552D;
   text-decoration: underline;
 }
 
 .reset-to-overview-button {
   padding: 15px 30px;
-  background-color: #3C552D; /* Hijau Tua */
+  background-color: #3C552D;
   color: white;
   border: none;
   border-radius: 8px;
@@ -281,7 +293,7 @@ export default {
 }
 
 .reset-to-overview-button:hover {
-  background-color: #86A788; /* Hijau Muda */
+  background-color: #86A788;
   transform: translateY(-2px);
 }
 
@@ -295,9 +307,15 @@ export default {
   .score-display {
     font-size: 1.5em;
   }
-  .back-to-overview, .repeat-this-test {
-    font-size: 1em;
-    margin-bottom: 20px;
+  .top-navigation-links {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .top-navigation-links .separator {
+    display: none;
+  }
+  .nav-link {
+    margin-bottom: 10px;
   }
 }
 </style>

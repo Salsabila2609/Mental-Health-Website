@@ -155,14 +155,11 @@ export default {
         this.currentQuestionIndex++;
         this.selectedAnswer = this.answers[this.currentQuestionIndex] !== null ? this.answers[this.currentQuestionIndex] : null;
       } else {
-        console.log("Mengirim jawaban:", this.answers); // Log untuk debugging
+        sessionStorage.setItem('testAnswers', JSON.stringify(this.answers));
         this.$router.push({
           name: 'TestResult',
           params: {
             testType: this.testType,
-          },
-          query: {
-            answers: JSON.stringify(this.answers)
           }
         });
       }
@@ -178,7 +175,7 @@ export default {
 </script>
 
 <style scoped>
-/* Hex Codes (Pastikan ini sesuai dengan palet Anda) */
+/* Hex Codes */
 /* Hijau Muda: #86A788 */
 /* Cream: #FFFEEC */
 /* Pink Muda Banget: #FFE3E2 */
@@ -197,12 +194,11 @@ export default {
   text-align: center;
 }
 
-/* Tombol Kembali ke Daftar Tes (Overview) */
 .back-to-overview {
   display: block;
   text-align: left;
   margin-bottom: 30px;
-  color: #C97372; /* Pink */
+  color: #C97372;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.1em;
@@ -210,10 +206,9 @@ export default {
 }
 
 .back-to-overview:hover {
-  color: #3C552D; /* Hijau Tua */
+  color: #3C552D;
 }
 
-/* Bagian Intro/Detail Tes*/
 .test-intro-section {
   background-color: #FFFFFF;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
@@ -224,7 +219,7 @@ export default {
 
 .test-intro-section h1 {
   font-size: 2.5em;
-  color: #3C552D; /* Hijau Tua */
+  color: #3C552D;
   margin-bottom: 20px;
 }
 
@@ -251,7 +246,7 @@ export default {
 }
 
 .instructions h3 {
-  color: #C97372; /* Pink */
+  color: #C97372;
   margin-top: 0;
   margin-bottom: 15px;
   font-size: 1.3em;
@@ -270,7 +265,7 @@ export default {
 
 .start-button {
   padding: 15px 30px;
-  background-color: #86A788; /* Hijau Muda */
+  background-color: #86A788;
   color: white;
   border: none;
   border-radius: 8px;
@@ -282,11 +277,10 @@ export default {
 }
 
 .start-button:hover {
-  background-color: #3C552D; /* Hijau Tua */
+  background-color: #3C552D;
   transform: translateY(-2px);
 }
 
-/* Bagian Alur Pertanyaan */
 .question-flow-section {
   background-color: #FFFFFF;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
@@ -302,7 +296,7 @@ export default {
 
 .question-flow-section h2 {
   font-size: 1.8em;
-  color: #3C552D; /* Hijau Tua */
+  color: #3C552D;
   margin-bottom: 30px;
   line-height: 1.4;
 }
@@ -319,30 +313,30 @@ export default {
 
 .options button {
   padding: 15px 25px;
-  border: 1px solid #FFCFCF; /* Pink Muda */
+  border: 1px solid #FFCFCF;
   border-radius: 8px;
-  background-color: #FFE3E2; /* Pink Muda Banget */
+  background-color: #FFE3E2;
   font-size: 1.1em;
   cursor: pointer;
   transition: all 0.3s ease;
   text-align: center;
   width: 100%;
-  color: #C97372; /* Pink */
+  color: #C97372;
   box-shadow: 0 1px 5px rgba(0,0,0,0.05);
 }
 
 .options button:hover {
-  background-color: #FFCFCF; /* Pink Muda */
-  border-color: #C97372; /* Pink */
-  color: #C97372; /* Pink */
+  background-color: #FFCFCF;
+  border-color: #C97372;
+  color: #C97372;
   transform: translateY(-2px);
   box-shadow: 0 3px 8px rgba(0,0,0,0.1);
 }
 
 .options button.selected {
-  background-color: #C97372; /* Pink */
+  background-color: #C97372;
   color: white;
-  border-color: #C97372; /* Pink */
+  border-color: #C97372;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -375,12 +369,12 @@ export default {
 }
 
 .nav-button-next:not(:disabled) {
-  background-color: #86A788; /* Hijau Muda */
+  background-color: #86A788;
   color: white;
 }
 
 .nav-button-next:not(:disabled):hover {
-  background-color: #3C552D; /* Hijau Tua */
+  background-color: #3C552D;
   transform: translateY(-1px);
 }
 
