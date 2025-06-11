@@ -1,31 +1,29 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+  <div>
+    <Navbar />
+    <router-view />
+    <HeroSection />
+    <MissionSection />
   </div>
 </template>
 
 <script>
+import HeroSection from './components/HeroSection.vue'
+import MissionSection from './components/MissionSection.vue'
+import Navbar from './components/Navbar.vue'
 export default {
-  name: 'App'
+  components: {
+    Navbar,
+    HeroSection,
+    MissionSection
+  }
 }
 </script>
 
 <style>
-nav {
-  padding: 30px;
-}
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-  text-decoration: none;
-  margin: 0 10px;
-}
-nav a.router-link-exact-active {
-  color: #42b983;
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f4ed;
 }
 </style>
