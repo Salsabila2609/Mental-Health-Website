@@ -7,7 +7,6 @@ import KuisPage from '../views/Kuis.vue'
 import ProfilPage from '../views/Profil.vue'
 import LoginPage from '../views/Login.vue'
 import RegisterPage from '../views/Register.vue'
-import Mood from '../components/MoodInputPage.vue'
 
 const routes = [
   { path: '/', component: HomePage },
@@ -18,7 +17,6 @@ const routes = [
   { path: '/profil', component: ProfilPage },
   { path: '/login', component: LoginPage },
   { path: '/register', component: RegisterPage },
-  { path: '/mood', name: 'Mood Tracker', component: Mood }
 ]
 
 const router = createRouter({
