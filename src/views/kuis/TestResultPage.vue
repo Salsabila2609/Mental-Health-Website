@@ -3,7 +3,7 @@
     <div class="top-navigation-links">
       <router-link to="/kuis" class="nav-link">&larr; Kembali ke Daftar Tes</router-link>
       <span class="separator">|</span>
-      <router-link :to="`/kuis/${testType}`" class="nav-link">Ulangi Tes Ini</router-link>
+      <router-link :to="`/kuis/${this.testType}`" class="nav-link">Ulangi Tes Ini</router-link>
     </div>
 
     <div class="result-container">
@@ -39,13 +39,11 @@
 export default {
   name: 'TestResultPage',
   props: {
-    testType: {
-      type: String,
-      required: true
-    }
+    // testType tidak lagi menjadi prop dari router params, tetapi akan diambil dari localStorage
   },
   data() {
     return {
+      testType: '', // Akan diambil dari localStorage
       testDisplayName: '',
       score: 0,
       interpretation: '',
@@ -58,13 +56,26 @@ export default {
   },
   methods: {
     parseAndCalculateResult() {
-      const answersString = sessionStorage.getItem('testAnswers');
-      sessionStorage.removeItem('testAnswers');
+      const answersString = localStorage.getItem('testAnswers');
+      const storedTestType = localStorage.getItem('testTypeForResults');
+
+      // Tidak lagi menghapus item dari localStorage di sini, biarkan persisten
+      // localStorage.removeItem('testAnswers');
+      // localStorage.removeItem('testTypeForResults');
+
+      if (storedTestType) {
+        this.testType = storedTestType;
+      } else {
+        // Fallback jika tidak ada di localStorage (misal, user langsung mengakses URL hasil)
+        console.warn("Test type tidak ditemukan di localStorage. Mungkin akses langsung halaman hasil.");
+        this.$router.replace('/kuis'); // Arahkan kembali ke overview
+        return;
+      }
 
       try {
         this.parsedAnswers = answersString ? JSON.parse(answersString) : [];
       } catch (e) {
-        console.error("Gagal parse jawaban dari sessionStorage:", e);
+        console.error("Gagal parse jawaban dari localStorage:", e);
         this.parsedAnswers = [];
       }
 
@@ -158,7 +169,7 @@ export default {
 /* Pink: #C97372 */
 
 .test-result-page {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Poppins', sans-serif;
   padding: 40px 20px;
   max-width: 900px;
   margin: 0 auto;

@@ -1,47 +1,62 @@
 <template>
   <div id="app">
-    <!-- Floating Hearts Animation -->
-    <div class="floating-hearts">
-      <div v-for="heart in hearts" :key="heart.id" class="heart" :style="heart.style">
-        💚
-      </div>
-    </div>
+  
 
-    <!-- Header -->
-    <header class="header">
-      <div class="container">
-        <h1>🌱 MindCare</h1>
-        <p>Platform Kesehatan Mental Terpercaya Untuk Hidup Yang Lebih Bahagia</p>
-      </div>
-    </header>
+ <!-- Hero / Landing Section -->
+ <section class="landing-section">
+  <div class="landing-content">
+    <h1 class="landing-title">Kamu Tidak Akan Sendirian</h1>
+    <p class="landing-subtitle">
+      Lumora hadir untuk kamu yang sedang berjuang secara mental dan emosional.  
+      Kami tahu tidak semua luka terlihat, dan tak semua rasa bisa dibagi dengan mudah.  
+      Di sini, kamu bisa menemukan ruang aman untuk memahami perasaanmu,  
+      mendapatkan dukungan yang tepat, dan mulai memulihkan diri—tanpa tekanan.  
+      <br><br>
+      Karena kamu berharga. Karena kamu layak untuk merasa lebih baik.
+    </p>
+    <button class="btn btn-landing" @click="scrollToMood">
+      Mulai Perjalananmu
+    </button>
+  </div>
+</section>
 
     <div class="container">
       <!-- Mood Quick Check -->
       <div class="mood-quick-check fade-in">
-        <h2 style="color: #3C552D; margin-bottom: 20px;">
-          👋 Hai! Bagaimana perasaanmu hari ini?
-        </h2>
-        <div class="mood-emojis">
-          <div
-            v-for="mood in moods"
-            :key="mood.id"
-            class="mood-emoji"
-            :class="{ selected: selectedMood === mood.id }"
-            @click="selectMood(mood.id)"
-            :title="mood.name"
-          >
-            {{ mood.emoji }}
-          </div>
-        </div>
-        <div v-if="selectedMood" class="fade-in">
-          <p style="color: #86A788; font-size: 1.1rem; margin-top: 15px;">
-            {{ getMoodMessage() }}
-          </p>
-          <div class="progress-bar">
-            <div class="progress-fill" :style="{ width: getMoodProgress() + '%' }"></div>
-          </div>
+  <div class="mood-grid">
+   
+
+    <!-- Kanan: Konten teks -->
+    <div class="mood-text">
+      <h2>
+        👋 Hai! Bagaimana perasaanmu hari ini?
+      </h2>
+
+      <div class="mood-emojis">
+        <div
+          v-for="mood in moods"
+          :key="mood.id"
+          class="mood-emoji"
+          :class="{ selected: selectedMood === mood.id }"
+          @click="selectMood(mood.id)"
+          :title="mood.name"
+        >
+          {{ mood.emoji }}
         </div>
       </div>
+
+      <div v-if="selectedMood" class="fade-in">
+        <p class="mood-message">
+          {{ getMoodMessage() }}
+        </p>
+        <div class="progress-bar">
+          <div class="progress-fill" :style="{ width: getMoodProgress() + '%' }"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
       <!-- Features Grid -->
       <div class="features-grid">
@@ -100,12 +115,7 @@
       </div>
     </div>
 
-    <!-- Quick Actions -->
-    <div class="quick-actions">
-      <button class="quick-action-btn" @click="showNotification('Chatbot siap membantu!', 'chatbot')" title="Chat Cepat">💬</button>
-      <button class="quick-action-btn" @click="showNotification('Mood tracker dibuka!', 'mood')" title="Mood Cepat">😊</button>
-      <button class="quick-action-btn" @click="showNotification('Bantuan tersedia!', 'help')" title="Bantuan">❓</button>
-    </div>
+  
 
     <!-- Notification -->
     <div class="notification-toast" :class="{ show: showToast }" v-if="notification.message">
@@ -168,6 +178,12 @@ function getMoodMessage() {
 
 function getMoodProgress() {
   return selectedMood.value * 20;
+}
+function scrollToMood() {
+  const moodSection = document.querySelector('.mood-quick-check');
+  if (moodSection) {
+    moodSection.scrollIntoView({ behavior: 'smooth' });
+  }
 }
 
 function openFeature(feature) {
@@ -238,7 +254,7 @@ function easeOutCubic(t) {
 
 function showWelcomeMessage() {
   setTimeout(() => {
-    showNotificationMsg('Selamat datang di MindCare! 🌱', 'welcome');
+    showNotificationMsg('Selamat datang di Lumora!', 'welcome');
   }, 1000);
 }
 

@@ -11,6 +11,8 @@ import KuisPage from '../views/Kuis.vue'
 import SingleTestPage from '../views/kuis/SingleTestPage.vue'
 import TestResultPage from '../views/kuis/TestResultPage.vue'
 
+import NotFound from '../views/NotFound.vue'
+
 const routes = [
   {
     path: '/',
@@ -51,11 +53,16 @@ const routes = [
     component: TestResultPage,
     props: true
   },
-    {
+  {
     path: '/detailartikel',
     name: 'DetailArtikel',
     component: DetailArtikel,
     props: true
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 
