@@ -1,19 +1,62 @@
+
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
 import ChatbotPage from '../views/Chatbot.vue'
 import ArtikelPage from '../views/Artikel.vue'
 import MoodTrackerPage from '../views/MoodTracker.vue'
+import DetailArtikel from '@/views/DetailArtikel.vue'
+
+// Kuis
 import KuisPage from '../views/Kuis.vue'
-import DetailPage from '../views/DetailArtikel.vue'
+import SingleTestPage from '../views/kuis/SingleTestPage.vue'
+import TestResultPage from '../views/kuis/TestResultPage.vue'
 
 const routes = [
-  { path: '/', component: HomePage },
-  { path: '/chatbot', component: ChatbotPage },
-  { path: '/artikel', component: ArtikelPage },
-  { path: '/mood-tracker', component: MoodTrackerPage },
-  { path: '/kuis', component: KuisPage },
-  { path: '/detailartikel', component: DetailPage }
+  {
+    path: '/',
+    name: 'Home',
+    component: HomePage
+  },
+  {
+    path: '/chatbot',
+    name: 'Chatbot',
+    component: ChatbotPage
+  },
+  {
+    path: '/artikel',
+    name: 'Artikel',
+    component: ArtikelPage
+  },
+  {
+    path: '/mood-tracker',
+    name: 'MoodTracker',
+    component: MoodTrackerPage
+  },
+  {
+    path: '/kuis',
+    name: 'KuisOverview',
+    component: KuisPage
+  },
 
+  // Route untuk Kuis
+  {
+    path: '/kuis/:testType',
+    name: 'SingleTest',
+    component: SingleTestPage,
+    props: true
+  },
+  {
+    path: '/kuis/:testType/hasil',
+    name: 'TestResult',
+    component: TestResultPage,
+    props: true
+  },
+    {
+    path: '/detailartikel',
+    name: 'DetailArtikel',
+    component: DetailArtikel,
+    props: true
+  }
 ]
 
 const router = createRouter({

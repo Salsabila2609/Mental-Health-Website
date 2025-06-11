@@ -4,7 +4,6 @@
     <div v-if="isLoading" class="loading-container">
       <div class="loading-spinner">
         <div class="spinner"></div>
-        <p>Memuat artikel...</p>
       </div>
     </div>
 
