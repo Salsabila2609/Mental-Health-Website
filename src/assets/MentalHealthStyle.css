@@ -5,12 +5,178 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #FFFEEC 0%, #FFE3E2 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+        .motivasi-section {
+            background-color: #ffe3e2; /* pink muda banget */
+            padding: 2rem;
+            margin: 2rem auto;
+            border-radius: 2rem;
+            text-align: center;
+            max-width: 90%;
+            color: #3C552D; /* hijau tua */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+          }
+          
+          .motivasi-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #C97372; /* pink tua */
+          }
+          
+          /* Marquee animasi horizontal */
+          .motivasi-marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+          
+          .motivasi-text {
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 300;
+            color: #3C552D;
+            animation: marquee 25s linear infinite;
+            padding-left: 100%;
+          }
+          
+          @keyframes marquee {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+          }
+          
+          /* Responsif */
+          @media (max-width: 600px) {
+            .motivasi-title {
+              font-size: 1.5rem;
+            }
+            .motivasi-text {
+              font-size: 0.9rem;
+            }
+          }
+          
+        /* LANDING SECTION */
+.landing-section {
+    display: flex;
+    justify-content: center;
+    padding: 100px 20px 40px;
+    background: #FFFEEC; /* Latar belakang luar (bukan gambar) */
+  }
+  
+  .landing-content {
+    position: relative;
+    margin-top: -50px;
+    background: url('@/assets/landing-hero.png') center/cover no-repeat;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    padding: 60px 40px;
+    max-width: 1200px;
+    min-height: 600px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+  }
+  
+  /* Overlay gelap agar teks kontras */
+  .landing-content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+   z-index: 0;
+    border-radius: 20px;
+  }
+  
+  /* Pastikan teks di atas overlay */
+  .landing-title,
+  .landing-subtitle,
+  .btn-landing {
+    position: relative;
+    z-index: 1;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .landing-content {
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    margin-top: -50px;
+    background: url('@/assets/landing-hero.png') center/cover no-repeat;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    padding: 60px 40px;
+    max-width: 1200px;
+    min-height: 600px;
+    width: 100%;
+    text-align: left; /* Dari center jadi left */
+    color: white;
+    overflow: hidden;
+}
+
+/* Pastikan juga elemen teks mengikuti rata kiri */
+.landing-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #2E4E1F;
+    text-align: left;
+}
+
+.landing-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    color: #2F4F4F; /* hijau tua */
+    max-width: 900px;
+    margin-left: 0;
+  }
+  
+
+
+  
+  .btn-landing:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Responsif */
+  @media (max-width: 768px) {
+    .landing-title {
+      font-size: 2rem;
+    }
+    .landing-subtitle {
+      font-size: 1rem;
+    }
+    .landing-content {
+      padding: 40px 20px;
+    }
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+  }
+  
+  /* Overlay blur background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 120%;
+    height: 120%;
+    z-index: -1;
+    background: linear-gradient(to bottom, #FFFEEC 30%, #FFE8D6 50%, #FFE3E2 100%);
+    filter: blur(30px);
+    transform: scale(1.0); /* Diperbesar agar menutupi seluruh layar saat scroll */
+    pointer-events: none;
+  }
+  
+  
+  
+        
 
         .floating-hearts {
             position: fixed;
@@ -92,7 +258,7 @@
         }
 
         .mood-quick-check {
-            background: white;
+            background: linear-gradient(135deg, #ffffffd0, #fff5f0d8);
             border-radius: 20px;
             padding: 30px;
             margin: 30px 0;
@@ -159,7 +325,7 @@
         }
 
         .features-grid {
-            display: grid;
+            display: flex;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin: 40px 0;
