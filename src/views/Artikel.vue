@@ -121,9 +121,9 @@
                 </div>
               </div>
               
-              <div class="card-hover-overlay">
+              <router-link to="/detailartikel" class="card-hover-overlay">
                 <span class="read-more">Baca Selengkapnya →</span>
-              </div>
+              </router-link>
             </article>
           </div>
         </div>
@@ -878,7 +878,7 @@ export default {
 
 /* Articles Section */
 .articles-section {
-  padding: 3rem 2rem;
+  padding: 2rem 2rem;
   background: white;
   position: relative;
   z-index: 1;
