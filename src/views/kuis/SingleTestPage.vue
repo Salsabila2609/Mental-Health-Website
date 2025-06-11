@@ -72,7 +72,7 @@ export default {
       immediate: true,
       handler(newType) {
         this.loadTestQuestions(newType);
-        this.resetTestState();
+        this.resetTestState(); // Ini akan membersihkan localStorage saat tes baru dipilih/direfresh
       }
     }
   },
@@ -137,6 +137,9 @@ export default {
       this.selectedAnswer = null;
       this.answers = new Array(this.questions.length).fill(null);
       this.testStarted = false;
+      // Hapus data hasil tes yang mungkin ada di localStorage saat tes baru dimulai/direfresh
+      localStorage.removeItem('testAnswers');
+      localStorage.removeItem('testTypeForResults');
     },
     startTestQuestions() {
       this.testStarted = true;
@@ -155,7 +158,17 @@ export default {
         this.currentQuestionIndex++;
         this.selectedAnswer = this.answers[this.currentQuestionIndex] !== null ? this.answers[this.currentQuestionIndex] : null;
       } else {
-        sessionStorage.setItem('testAnswers', JSON.stringify(this.answers));
+        // Simpan answers ke localStorage
+        try {
+          localStorage.setItem('testAnswers', JSON.stringify(this.answers));
+          // Juga simpan testType agar TestResultPage tahu jenis tesnya saat di-reload
+          localStorage.setItem('testTypeForResults', this.testType);
+        } catch (e) {
+          console.error("Gagal menyimpan jawaban ke localStorage:", e);
+          alert("Terjadi kesalahan saat menyimpan hasil. Mohon coba lagi.");
+          return;
+        }
+
         this.$router.push({
           name: 'TestResult',
           params: {
