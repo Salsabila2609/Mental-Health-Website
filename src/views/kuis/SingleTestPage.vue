@@ -197,7 +197,7 @@ export default {
 /* Pink: #C97372 */
 
 .single-test-page {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Poppins', sans-serif;
   padding: 40px 20px;
   max-width: 900px;
   margin: 0 auto;
