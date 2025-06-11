@@ -36,11 +36,10 @@
 export default {
   name: 'TestResultPage',
   props: {
-    testType: { // testType masih dari params, jadi bisa jadi prop
+    testType: {
       type: String,
       required: true
     }
-    // Hapus prop 'answers' di sini, karena kita akan mengaksesnya dari this.$route.query
   },
   data() {
     return {
@@ -57,7 +56,6 @@ export default {
   },
   methods: {
     parseAndCalculateResult() {
-      // --- PERUBAHAN DI SINI: Mengambil answers dari this.$route.query ---
       const answersString = this.$route.query.answers;
       // console.log("Answers string from query:", answersString); // Debugging
 
@@ -71,7 +69,7 @@ export default {
 
       this.score = this.parsedAnswers.reduce((sum, value) => {
         // console.log(`Sum: ${sum}, Value: ${value}, Type: ${typeof value}`); // Debugging
-        return sum + Number(value); // Pastikan value diubah menjadi angka
+        return sum + Number(value);
       }, 0);
 
       // console.log("Skor akhir:", this.score); // Debugging
@@ -85,7 +83,7 @@ export default {
       };
       this.testDisplayName = typeMap[this.testType] || 'Kesehatan Mental';
 
-      // Logika Interpretasi Hasil dan Rekomendasi (tetap sama)
+      // Logika Interpretasi Hasil dan Rekomendasi
       if (this.testType === 'depresi') {
         if (this.score <= 4) {
           this.interpretation = 'Tingkat depresi Anda rendah. Pertahankan pola hidup sehat dan aktivitas sosial yang positif.';
@@ -167,7 +165,7 @@ export default {
   padding: 40px 20px;
   max-width: 900px;
   margin: 0 auto;
-  background-color: transparent; /* Pastikan ini transparan agar background App.vue terlihat */
+  background-color: transparent;
   min-height: 100vh;
   color: #333;
   text-align: center;
@@ -188,12 +186,12 @@ export default {
   color: #3C552D; /* Hijau Tua */
 }
 
-/* Bagian Kontainer Hasil - KEMBALIKAN BACKGROUND DAN SHADOW */
+/* Bagian Kontainer Hasil */
 .result-container {
-  background-color: #FFFFFF; /* KEMBALIKAN PUTIH */
+  background-color: #FFFFFF;
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* KEMBALIKAN BAYANGAN */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   margin-top: 30px;
 }
 

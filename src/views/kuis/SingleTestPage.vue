@@ -155,14 +155,13 @@ export default {
         this.currentQuestionIndex++;
         this.selectedAnswer = this.answers[this.currentQuestionIndex] !== null ? this.answers[this.currentQuestionIndex] : null;
       } else {
-        // --- PERBAIKAN DI SINI: Mengirim answers sebagai query params ---
         console.log("Mengirim jawaban:", this.answers); // Log untuk debugging
         this.$router.push({
           name: 'TestResult',
           params: {
-            testType: this.testType, // testType tetap sebagai params
+            testType: this.testType,
           },
-          query: { // answers sekarang menjadi query param
+          query: {
             answers: JSON.stringify(this.answers)
           }
         });
@@ -192,7 +191,7 @@ export default {
   padding: 40px 20px;
   max-width: 900px;
   margin: 0 auto;
-  background-color: transparent; /* Pastikan ini transparan agar background App.vue terlihat */
+  background-color: transparent;
   min-height: 100vh;
   color: #333;
   text-align: center;
@@ -214,10 +213,10 @@ export default {
   color: #3C552D; /* Hijau Tua */
 }
 
-/* Bagian Intro/Detail Tes - KEMBALIKAN KOTAK PUTIH DAN SHADOW */
+/* Bagian Intro/Detail Tes*/
 .test-intro-section {
-  background-color: #FFFFFF; /* KEMBALIKAN PUTIH */
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* KEMBALIKAN BAYANGAN */
+  background-color: #FFFFFF;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   padding: 40px;
   border-radius: 12px;
   margin-bottom: 40px;
@@ -240,12 +239,12 @@ export default {
 }
 
 .instructions {
-  background-color: #FFFEEC; /* Cream - pertahankan background untuk kontainer petunjuk khusus ini */
+  background-color: #FFFEEC;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 30px;
   text-align: left;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Pertahankan sedikit shadow untuk petunjuk */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
@@ -287,10 +286,10 @@ export default {
   transform: translateY(-2px);
 }
 
-/* Bagian Alur Pertanyaan - KEMBALIKAN KOTAK PUTIH DAN SHADOW */
+/* Bagian Alur Pertanyaan */
 .question-flow-section {
-  background-color: #FFFFFF; /* KEMBALIKAN PUTIH */
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* KEMBALIKAN BAYANGAN */
+  background-color: #FFFFFF;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   padding: 40px;
   border-radius: 12px;
 }

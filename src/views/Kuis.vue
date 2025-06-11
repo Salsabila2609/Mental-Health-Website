@@ -3,7 +3,7 @@
     <div class="overview-header">
       <h1>Perubahan bisa dimulai dengan satu langkah</h1>
       <p class="subtitle">Tes kesehatan mental online kami dapat membantu Anda memahami perasaan Anda dan menjadi langkah pertama untuk mendapatkan bantuan yang tepat.</p>
-      </div>
+    </div>
 
     <div class="tests-grid">
       <router-link
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'KuisPage', // Nama komponen tetap KuisPage
+  name: 'KuisPage',
   data() {
     return {
       tests: [
@@ -33,7 +33,6 @@ export default {
         { type: 'stres', name: 'Tes Stres', description: 'Identifikasi tingkat stres Anda dan dapatkan wawasan.', routePath: 'stres' },
         { type: 'burnout', name: 'Tes Burnout', description: 'Nilai risiko burnout Anda dan temukan cara untuk mengatasinya.', routePath: 'burnout' },
         { type: 'harga-diri', name: 'Tes Harga Diri', description: 'Evaluasi harga diri Anda dan bangun kepercayaan diri.', routePath: 'harga-diri' }
-        // Tambahkan tes lainnya jika ada di masa depan
       ]
     };
   }
@@ -41,82 +40,78 @@ export default {
 </script>
 
 <style scoped>
-/* Variabel Warna */
-:root {
-  --hijau-muda: #86A788;
-  --cream: #FFFEEC;
-  --pink-muda-bgt: #FFE3E2; /* Paling terang */
-  --pink-muda: #FFCFCF;
-  --hijau-tua: #3C552D;
-  --pink: #C97372; /* Paling gelap */
-}
+/* Hex Codes */
+/* Hijau Muda: #86A788 */
+/* Cream: #FFFEEC */
+/* Pink Muda Banget: #FFE3E2 */
+/* Pink Muda: #FFCFCF */
+/* Hijau Tua: #3C552D */
+/* Pink: #C97372 */
 
 .kuis-overview-page {
   font-family: 'Arial', sans-serif;
   padding: 40px 20px;
-  max-width: 1200px; /* Lebar maksimum halaman keseluruhan */
+  max-width: 1200px;
   margin: 0 auto;
-  background-color: var(--cream); /* Latar belakang halaman ikhtisar */
+  background-color: transparent;
   min-height: 100vh;
   color: #333;
 }
 
 .overview-header {
   text-align: center;
-  margin-bottom: 50px; /* Jarak bawah dari header */
+  margin-bottom: 50px;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 20px; /* Menambahkan padding di bagian bawah header */
+  padding-bottom: 20px;
 }
 
 .overview-header h1 {
   font-size: 2.8em;
-  color: var(--hijau-tua);
+  color: #3C552D;
   margin-bottom: 15px;
 }
 
 .overview-header .subtitle {
   font-size: 1.2em;
   color: #555;
-  margin-bottom: 0; /* Menghilangkan margin bottom karena informasi dokter dihapus */
+  margin-bottom: 0;
   line-height: 1.6;
 }
 
-/* Class .doctor-info telah dihapus karena elemennya tidak ada */
-
 .tests-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Tata letak grid responsif */
-  gap: 30px; /* Jarak antar kartu */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
 }
 
 .test-card {
-  background-color: #FFFFFF; /* Latar belakang kartu putih */
+  background-color: #FFFFFF;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Bayangan yang jelas */
-  text-decoration: none; /* Hapus garis bawah dari router-link */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
   color: #333;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden; /* Pastikan konten tidak meluber */
-  display: flex; /* Untuk menyusun konten di tengah vertikal jika diperlukan */
+  overflow: hidden;
+  display: flex;
   flex-direction: column;
 }
 
 .test-card:hover {
-  transform: translateY(-5px); /* Efek melayang saat hover */
+  transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .card-content {
   padding: 25px;
   text-align: center;
-  flex-grow: 1; /* Agar konten mengisi ruang yang tersedia */
+  flex-grow: 1;
 }
 
 .card-content h2 {
   font-size: 1.5em;
-  color: var(--pink); /* Judul kartu pink */
+  color: #C97372;
   margin-bottom: 15px;
 }
 
@@ -130,7 +125,7 @@ export default {
 .start-test-button {
   display: inline-block;
   padding: 12px 25px;
-  background-color: var(--hijau-muda); /* Warna hijau muda */
+  background-color: #86A788;
   color: white;
   border: none;
   border-radius: 8px;
@@ -138,23 +133,22 @@ export default {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  text-decoration: none; /* Penting karena ini button di dalam router-link */
+  text-decoration: none;
 }
 
 .start-test-button:hover {
-  background-color: var(--hijau-tua); /* Warna hijau tua saat hover */
+  background-color: #3C552D;
 }
 
-/* Media queries untuk tampilan responsif */
 @media (max-width: 768px) {
   .overview-header h1 {
     font-size: 2em;
   }
   .tests-grid {
-    grid-template-columns: 1fr; /* Satu kolom di layar kecil */
+    grid-template-columns: 1fr;
   }
   .test-card {
-    margin: 0 auto; /* Tengah kartu */
+    margin: 0 auto;
     max-width: 400px;
   }
 }
