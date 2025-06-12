@@ -13,8 +13,11 @@
       <header class="article-header">
         <div class="header-container">
           <button @click="goBack" class="back-button">
-            <span class="back-icon">←</span>
-            <span class="back-text">Kembali</span>
+            <router-link to="/artikel">
+              <span class="back-icon">←</span>
+              <span class="back-text">Kembali</span>
+            </router-link>
+
           </button>
           
           <div class="header-actions">
