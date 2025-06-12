@@ -819,10 +819,10 @@ body {
   align-items: center;
   gap: 0.4rem;
   font-size: 0.9rem;
-  opacity: 0.8;
-  background: none !important;
+  opacity: 0.7;
   padding: 0.25rem 0.4rem;
-  background-color: rgba(60, 85, 42, 0.8) !important; 
+  color: rgb(12, 74, 12);
+
 }
 
 .stat-icon {

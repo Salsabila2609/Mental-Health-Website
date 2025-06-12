@@ -30,8 +30,9 @@
             placeholder="Cari artikel yang kamu butuhkan..."
             class="search-input"
             @input="filterArticles"
+            @keyup.enter="handleSearchClick"
           >
-          <button class="search-btn">
+          <button class="search-btn" @click="handleSearchClick">
             <span class="search-text">Cari</span>
           </button>
         </div>
@@ -567,7 +568,7 @@ export default {
       const size = Math.random() * 60 + 20;
       const left = Math.random() * 100;
       const animationDuration = Math.random() * 10 + 15;
-      const delay = Math.random() * 5;
+      const delay = 0;
       
       return {
         width: size + 'px',
@@ -575,7 +576,8 @@ export default {
         left: left + '%',
         backgroundColor: colors[index % colors.length],
         animationDuration: animationDuration + 's',
-        animationDelay: delay + 's'
+        animationDelay: delay + 's',
+        opacity: 1
       };
     },
     getCategoryCount(categoryName) {
@@ -601,13 +603,46 @@ export default {
     },
     filterArticles() {
       this.currentPage = 1;
+      // Tambahkan auto scroll
+      this.$nextTick(() => {
+        this.scrollToArticles();
+      });
     },
     setActiveCategory(category) {
       this.activeCategory = category;
       this.currentPage = 1;
+      // Tambahkan auto scroll
+      this.$nextTick(() => {
+        this.scrollToArticles();
+      });
     },
     setActiveTip(index) {
       this.activeTip = index;
+    },
+    handleSearchClick() {
+      this.filterArticles();
+      this.scrollToArticles();
+    },
+      scrollToArticles() {
+    const articlesSection = document.querySelector('.articles-section');
+    if (articlesSection) {
+      articlesSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    },
+      scrollToArticlesWithOffset() {
+    const heroSection = document.querySelector('.hero-section');
+    const searchSection = document.querySelector('.search-section');
+    
+    if (heroSection && searchSection) {
+      const scrollTarget = heroSection.offsetHeight + searchSection.offsetHeight;
+      window.scrollTo({ 
+        top: scrollTarget, 
+        behavior: 'smooth' 
+      });
+    }
     },
     nextTip() {
       this.activeTip = (this.activeTip + 1) % this.mentalHealthTips.length;
