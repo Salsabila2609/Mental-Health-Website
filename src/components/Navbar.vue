@@ -51,8 +51,9 @@ export default {
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   font-family: 'Poppins', sans-serif;
-  position: relative;
-  z-index: 1000;
+  position: sticky;      /* 🟢 ubah dari relative ke sticky */
+  top: 0;                /* 🟢 menempel di atas */
+  z-index: 1000;         /* tetap di atas elemen lain */
 }
 
 .nav-left {
