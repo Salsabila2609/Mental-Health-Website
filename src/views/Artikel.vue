@@ -706,11 +706,20 @@ export default {
 
 /* Hero Section */
 .hero-section {
-  padding: 4rem 2rem 2rem;
+  padding: 1rem;
   text-align: center;
   position: relative;
   z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto !important;
+  min-height: 20vh !important;
+  margin-top: 3rem;
+
 }
+
 
 .hero-content {
   max-width: 1200px;
@@ -1399,7 +1408,11 @@ export default {
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: 2rem 1rem;
+    padding: 3rem 1.5rem 1.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 6vw, 3rem); 
   }
   
   .search-section {
@@ -1968,6 +1981,13 @@ button, input, .article-card, .tip-card {
 }
 
 @media (max-width: 480px) {
+  .hero-section {
+    padding: 2rem 1rem 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(1.8rem, 7vw, 2.5rem); /* Lebih nyaman untuk layar kecil */
+  }
   .articles-section-wrapper {
     margin-bottom: 3rem;
   }

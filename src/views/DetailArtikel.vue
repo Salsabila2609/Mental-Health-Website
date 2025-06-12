@@ -436,6 +436,7 @@ export default {
   },
   
   mounted() {
+    window.scrollTo(0, 0);
     // Simulate loading
     setTimeout(() => {
       this.isLoading = false;
@@ -682,7 +683,7 @@ body {
 
 .action-btn {
   background: none;
-  border: 1px solid #FFE2E2;
+  border: 1px solid #783535;
   padding: 0.5rem;
   border-radius: 50%;
   cursor: pointer;
@@ -709,7 +710,7 @@ body {
 /* Progress Bar */
 .progress-container {
   position: sticky;
-  top: 73px;
+  top: 72px;
   height: 3px;
   background: #FFE2E2;
   z-index: 99;
@@ -816,9 +817,12 @@ body {
 .stat-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   font-size: 0.9rem;
-  opacity: 0.9;
+  opacity: 0.8;
+  background: none !important;
+  padding: 0.25rem 0.4rem;
+  background-color: rgba(60, 85, 42, 0.8) !important; 
 }
 
 .stat-icon {
@@ -1553,12 +1557,14 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .header-container {
-    padding: 0 1rem;
+  .hero-section {
+    height: 45vh;
   }
-  
+
   .hero-content {
-    padding: 1.5rem;
+    padding: 1rem;
+    font-size: 0.95rem;
+    text-align: center;
   }
   
   .article-title {
@@ -1623,8 +1629,13 @@ body {
     padding: 1.5rem 1rem;
   }
   
+  .hero-section {
+    height: 40vh;
+  }
+
   .hero-content {
-    padding: 1rem;
+    padding: 0.75rem;
+    font-size: 0.9rem;
   }
   
   .article-title {
