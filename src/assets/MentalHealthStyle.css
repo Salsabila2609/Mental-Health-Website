@@ -5,6 +5,39 @@
             box-sizing: border-box;
         }
 
+        .footer {
+  background-color: #3C552D; /* hijau tua */
+  color: #FFFEEC; /* cream */
+  padding: 2rem 1rem;
+  margin-top: 3rem;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.footer-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #FFFEEC;
+}
+
+.footer-text {
+  font-size: 0.95rem;
+  margin: 0.2rem 0;
+}
+
+.footer-copy {
+  font-size: 0.85rem;
+  text-align: left;
+  color: #FFCFCF;
+}
+
         .motivasi-section {
             background-color: #ffe3e2; /* pink muda banget */
             padding: 2rem;

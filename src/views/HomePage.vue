@@ -125,6 +125,20 @@
     <!-- Loading Spinner -->
     <div v-if="loading" class="loading-spinner"></div>
   </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h2 class="footer-title">Mental Health Support</h2>
+        <p class="footer-text">Jl. Kesehatan No. 123, Madiun, Jawa Timur, Indonesia</p>
+        <p class="footer-text">Email: support@mentalhealth.id</p>
+        <p class="footer-text">Telepon: (0351) 123456</p>
+      </div>
+      <div class="footer-copy">
+        <p>&copy; 2025 Mental Health. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 </template>
 
 <script setup>
