@@ -1,17 +1,55 @@
 <template>
-  <div class="page-wrapper">
-    <h1>Mood Input</h1>
-    <p>Catat suasana hati kamu di sini ✨</p>
+  <div class="page-wrapper mood-page bg-peach min-h-screen flex flex-col items-center justify-start py-10 px-4">
+    <header class="header">
+      <div class="container">
+        <h1>Mood Tracker</h1>
+        <p>Catat suasana hati kamu di sini</p>
+      </div>
+    </header>
 
-    <button @click="showModal = true" class="send-btn">
-      Catat Mood
-    </button>
-
-    <!-- Chart Section -->
-    <div class="max-w-4xl mx-auto px-4 mt-10">
-      <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
-        <h2 class="text-lg font-semibold text-gray-800 mb-4">Riwayat Mood Kamu 🧠</h2>
+    <!-- Card Kedua -->
+    <div class="card-container bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl mb-6">
+      <!-- Header Section -->
+      <div class="flex justify-between items-center p-4 border-b border-gray-100 bg-gray-50">
+        <h2 class="text-lg font-semibold text-gray-800">
+          Berdasarkan History Anda
+        </h2>
+        <button @click="showModal = true" class="send-btn">
+          Catat Mood
+        </button>
+      </div>
+      
+      <!-- Content Section -->
+     <!-- Content Section -->
+      <div class="p-6 flex items-stretch h-48"> <!-- Atur tinggi fixed jika perlu -->
+        <!-- Persentase Besar -->
+        <div class="w-1/4 flex items-center justify-center">
+          <span class="font-bold text-[#86A788]" style="font-size: 8rem; line-height: 0.8">80%</span>
+        </div>
         
+        <!-- Teks Panjang -->
+        <div class="w-3/4 pl-6 flex items-center">
+          <p class="text-lg text-gray-700">
+            Berdasarkan catatan mood Anda selama ini, sebagian besar hari Anda diisi dengan perasaan bahagia dan positif. Terus pertahankan energi baik ini!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Wrapper -->
+    <div class="card-container bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl">
+      <!-- Header Section with Title and Button -->
+      <div class="flex justify-between items-center p-4 border-b border-gray-100 bg-gray-50">
+        <h2 class="text-lg font-semibold text-gray-800">
+          Riwayat Mood Kamu 💕
+        </h2>
+        <button @click="showModal = true" class="send-btn">
+          Catat Mood
+        </button>
+      </div>
+      
+      <!-- Chart Section -->
+      <div class="p-6">
         <div id="mood-graph" class="graph-holder h-[300px]"></div>
       </div>
     </div>
@@ -48,9 +86,6 @@
       </div>
     </div>
   </div>
-
-  
-
 </template>
 
 <script>
@@ -142,12 +177,13 @@ function renderMoodGraph() {
 
     const options = {
         chart: {
-            type: 'area',
-            height: 300,
-            background: '#ffffff',
-            toolbar: {
-                show: false
-            }
+          type: 'area',
+          height: 400,
+          width: '100%', // Tambahin ini kalo belum ada
+          background: '#ffffff',
+          toolbar: {
+            show: false
+          }
         },
         series: [{
             name: 'Mood',
@@ -187,7 +223,7 @@ function renderMoodGraph() {
         stroke: {
             curve: 'smooth'
         },
-        colors: ["#86A788"]
+        colors: ["#FFCFCF"]
     };
 
     const chart = new ApexCharts(container, options);
@@ -197,10 +233,6 @@ function renderMoodGraph() {
 </script>
 
 <style scoped>
-.page-wrapper {
-  padding: 20px;
-  font-family: 'Poppins', sans-serif;
-}
 
 .modal-overlay {
   position: fixed;
@@ -224,9 +256,11 @@ function renderMoodGraph() {
 
 .graph-holder {
   height: 300px;
+  max-width: 1200px; /* Tambahan */
+  margin: 0 auto;    /* Biar tetap center */
   position: relative;
-  border-radius: 16px; /* <- ini bikin sudut rounded */
-  overflow: hidden; /* penting biar grafik nggak keluar dari radius */
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 
@@ -320,5 +354,127 @@ textarea {
   background: #3C552D;
   transform: scale(1.1);
 }
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 20px;
+position: relative;
+z-index: 2;
+}
+.header {
+background: linear-gradient(135deg, #86A788 0%, #3C552D 100%);
+color: white;
+padding: 20px 0;
+text-align: center;
+box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+position: relative;
+overflow: hidden;
+}
+.header::before {
+content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
 
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+
+
+/* Tambahan untuk posisi konten di atas background */
+.page-wrapper {
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+.card-container {
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px auto; /* Tambahkan margin atas bawah dan auto untuk center */
+  width: 95%; /* Lebar lebih responsif */
+  max-width: 1200px; /* Lebar maksimum lebih kecil */
+}
+/* Perubahan untuk header section */
+.flex.justify-between.items-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* Perbaikan spacing untuk tombol */
+.send-btn {
+  padding: 0.5rem 1.25rem; /* Ukuran lebih compact */
+  font-size: 0.9rem;
+  margin: 0; /* Hapus margin default */
+}
+.info-btn {
+  background: transparent;
+  color: #86A788;
+  border: none;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-btn:hover {
+  color: #3C552D;
+  transform: scale(1.2);
+}
+
+.info-btn svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 640px) {
+  .card-container {
+    padding: 16px;
+  }
+  .graph-holder {
+    height: 200px;
+  }
+  .emoji-btn img {
+    width: 40px;
+    height: 40px;
+  }
+  .send-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+}
 </style>
